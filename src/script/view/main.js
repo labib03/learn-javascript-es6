@@ -3,10 +3,22 @@ const main = () => {
   const buttonSearchElement = document.querySelector('#searchButtonElement');
   const clubListElement = document.querySelector('#clubList');
 
-  const onButtonSearchClicked = () => {
-    const dataSource = new DataSource(renderResult, fallbackResult);
-    dataSource.searchClub(searchElement.value);
-  };
+  // == asynchronous template ==
+  // const onButtonSearchClicked = () => {
+  //   DataSource.searchClub(searchElement.value)
+  //     .then(renderResult)
+  //     .catch(fallbackResult)
+  // };
+
+  // === asynchronous but syncronous template ===
+  const onButtonSearchClicked = async () => {
+    try {
+    const data = await DataSource.searchClub(searchElement.value);
+    renderResult(data)
+    } catch (error) {
+      fallbackResult(error)
+    }    
+  }
 
   const renderResult = (results) => {
     clubListElement.innerHTML = '';

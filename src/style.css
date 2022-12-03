@@ -1,0 +1,21 @@
+.clock {
+    width: 400px;
+    background-color: rgb(212, 100, 100);
+    padding: 30px;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 3px 6px 20px rgb(197, 197, 197);
+  }
+   
+  .clock .time {
+    font-size: 64px;
+    margin: 0 auto;
+  }
+   
+  .clock .date {
+    font-size: 24px;
+    margin: 0 auto;
+  }

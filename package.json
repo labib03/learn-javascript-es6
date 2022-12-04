@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.6.1",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "webpack": "^5.75.0",

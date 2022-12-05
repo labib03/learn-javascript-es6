@@ -1,7 +1,31 @@
+const BASE_URL = 'https://books-api.dicoding.dev';
+
 function main() {
 
   const getBook = () => {
     // tuliskan kode di sini!
+    const xhr = new XMLHttpRequest();
+
+    // menetapkan callback jika response yang dihasilkan sukses atau error
+    xhr.onload = function() {
+      const responseJSON = JSON.parse(this.responseText);
+
+      if(responseJSON.error){
+        showResponseMessage(responseJSON.message)
+      } else {
+        renderAllBooks(responseJSON.books)
+      }
+    }
+
+    xhr.onerror = function() {
+      showResponseMessage();
+    }
+
+    // membuat GET request
+    xhr.open('GET', `${BASE_URL}/list`);
+
+    // mengirim request
+    xhr.send();
   };
 
 

@@ -1,11 +1,10 @@
 const BASE_URL = 'https://books-api.dicoding.dev';
+const xhr = new XMLHttpRequest();
 
 function main() {
 
   const getBook = () => {
     // tuliskan kode di sini!
-    const xhr = new XMLHttpRequest();
-
     // menetapkan callback jika response yang dihasilkan sukses atau error
     xhr.onload = function() {
       const responseJSON = JSON.parse(this.responseText);
@@ -31,6 +30,21 @@ function main() {
 
   const insertBook = (book) => {
     // tuliskan kode di sini!
+    xhr.onload = function() {
+      const responseJSON = JSON.parse(this.responseText);
+      showResponseMessage(responseJSON.message);
+      getBook();
+    }
+
+    xhr.onerror = function() {
+      showResponseMessage();
+    }
+
+    xhr.open('POST', `${BASE_URL}/add`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Auth-Token', '12345');
+
+    xhr.send(JSON.stringify(book))
   };
 
   const updateBook = (book) => {

@@ -1,9 +1,10 @@
 .clock {
     width: 400px;
-    background-color: rgb(94, 204, 142);
+    background-color: rgb(79, 219, 140);
     padding: 30px;
     color: white;
     font-family: sans-serif;
+    letter-spacing: 2px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;

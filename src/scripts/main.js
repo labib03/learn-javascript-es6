@@ -69,6 +69,21 @@ function main() {
 
   const removeBook = (bookId) => {
     // tuliskan kode di sini!
+    xhr.onload = function() {
+      const responseJSON = JSON.parse(this.responseText);
+      showResponseMessage(responseJSON.message);
+      getBook();
+    }
+
+    xhr.onerror = function() {
+      showResponseMessage();
+    }
+
+    xhr.open('DELETE', `${BASE_URL}/delete/${bookId}`);
+
+    xhr.setRequestHeader('X-Auth-Token', 12345);
+
+    xhr.send();
   };
 
 

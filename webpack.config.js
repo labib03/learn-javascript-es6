@@ -8,6 +8,14 @@ module.exports = {
         filename: 'bundle.js'
     },
     mode: 'production',
+    devServer: {
+        client: {
+            overlay: {
+                errors: true,
+                warnings: false,
+            }
+        }
+    },
     module: {
         rules: [
             // CSS Loader

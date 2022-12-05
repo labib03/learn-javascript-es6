@@ -49,6 +49,22 @@ function main() {
 
   const updateBook = (book) => {
     // tuliskan kode di sini!
+    xhr.onload = function() {
+      const responseJSON = JSON.parse(this.responseText);
+      showResponseMessage(responseJSON.message);
+      getBook();
+    }
+
+    xhr.onerror = function() {
+      showResponseMessage();
+    }
+
+    xhr.open('PUT', `${BASE_URL}/edit/${book.id}`);
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Auth-Token', '12345');
+
+    xhr.send(JSON.stringify(book));
   };
 
   const removeBook = (bookId) => {
@@ -75,6 +91,7 @@ function main() {
             <div class="card-body">
               <h5>(${book.id}) ${book.title}</h5>
               <p>${book.author}</p>
+              <button type="button" class="btn btn-primary button-edit" id="${book.id}">Edit</button>
               <button type="button" class="btn btn-danger button-delete" id="${book.id}">Hapus</button>
             </div>
           </div>
@@ -82,12 +99,26 @@ function main() {
       `;
     });
 
-    const buttons = document.querySelectorAll('.button-delete');
-    buttons.forEach(button => {
+    const buttonsDelete = document.querySelectorAll('.button-delete');
+    buttonsDelete.forEach(button => {
       button.addEventListener('click', event => {
         const bookId = event.target.id;
         
         removeBook(bookId);
+      });
+    });
+
+    const buttonsEdit = document.querySelectorAll('.button-edit');
+    buttonsEdit.forEach(button => {
+      button.addEventListener('click', event => {
+        const bookId = event.target.id;
+        
+        const findBook = books.find(book => book.id == bookId);
+
+        inputBookId.value = findBook.id;
+        inputBookTitle.value = findBook.title;
+        inputBookAuthor.value = findBook.author;
+
       });
     });
   };

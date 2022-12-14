@@ -124,7 +124,7 @@
         <div class="mx-auto container h-full flex flex-col items-center py-40">
           <!-- movie search input-->
           <form id="movie-search-form" class="w-2/4 flex items-center gap-2" >
-            <input id="movie-search-input" class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider" type="text" name="movie-search" aria-label="movie-search" placeholder="Ketik nama film-nya disini ...">
+            <input id="movie-search-input" autocomplete="off" class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider" type="text" name="movie-search" aria-label="movie-search" placeholder="Ketik nama film-nya disini ...">
             <input type="submit" value="Gas Cari" id="movie-search-button" class="cursor-pointer block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none" aria-label="button-search"></input>
           </form>
 
@@ -134,7 +134,7 @@
 
             <!-- Movie Trending Title -->
             <div class="mt-16">
-              <h1 class="text-4xl font-semibold tracking-wide">Top Trending Movies in this week</h1>
+               <h1 class="text-4xl font-semibold tracking-wide">Top Trending Movies in this week</h1>
             </div>
 
             <!-- Movie List Trending Item -->
@@ -143,6 +143,12 @@
             </div>
 
            </div>
+
+           <!-- Movie Search Result -->
+           <div id="search-movies-container" class="w-2/3 flex flex-col items-center gap-5">
+
+           </div>
+
         </div>
       </div>
     </div>

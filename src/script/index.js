@@ -1,13 +1,11 @@
 import "../css/style.css";
 import "flowbite";
+import trendingMoviesElement from "./trendingMovies";
+import searchElement from "./searchElement";
 
-// const __headerTitle = document.getElementById("nav-header-title");
-// const __movieeTitle = document.getElementById("moovvie-hide");
+const main = () => {
+  trendingMoviesElement();
+  searchElement();
+};
 
-// __headerTitle.addEventListener("mouseover", () => {
-//   __movieeTitle.classList.replace("moviee-hide", "moviee-show");
-// });
-
-// __headerTitle.addEventListener("mouseout", () => {
-//   __movieeTitle.classList.replace("moviee-show", "moviee-hide");
-// });
+main();

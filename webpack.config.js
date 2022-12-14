@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const isProduction = process.env.NODE_ENV === "production";
+const webpack = require("webpack");
 
 const stylesHandler = "style-loader";
 
@@ -15,6 +16,10 @@ const config = {
     new HtmlWebpackPlugin({
       template: "./index.html",
       chunks: ["main"],
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
     }),
   ],
   module: {

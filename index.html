@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mooviee</title>
 </head>
-<body>
+<body class="snap-proximity snap-y">
 
     <!-- This example requires Tailwind CSS v3.0+ -->
 <div class="isolate bg-white h-screen">
@@ -119,33 +119,30 @@
     </main>
 
     <!-- movie list component -->
-    <div id="movie-list">
-      <div class="relative h-screen">
-        <div class="mx-auto container h-screen flex flex-col items-center pt-40">
+    <div id="movie-list" class="h-screen -scroll-mt-8">
+      <div class="relative">
+        <div class="mx-auto container h-full flex flex-col items-center py-40">
           <!-- movie search input-->
-          <div class="w-2/4 flex items-center gap-2">
-            <input class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider" type="text" name="movie-search" aria-label="movie-search" placeholder="Ketik nama film-nya disini ...">
-            <button class="block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none" type="submit">Gas Cari</button>
-          </div>
-
-          <!-- Movie Trending Title -->
-          <div class="mt-16">
-            <h1 class="text-4xl font-semibold tracking-wide">Top Trending Movies in this week</h1>
-          </div>
-
-          <!-- Movie List Trending Item -->
-          <div id="trending-movie" class="grid grid-cols-4 gap-4 w-2/3 h-full mt-10 pb-5">
-
-            <div class="flex items-center justify-center w-full h-full bg-slate-400 hover:rounded-lg">Box 1</div>
-
-            <div class="w-full h-full bg-green-400 hover:rounded-xl">Box 1</div>
-
-            <div class="w-full h-full bg-yellow-400 hover:rounded-2xl">Box 1</div>
-
-            <div class="w-full h-full bg-lime-400 hover:rounded-3xl">Box 1</div>
+          <form id="movie-search-form" class="w-2/4 flex items-center gap-2" >
+            <input id="movie-search-input" class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider" type="text" name="movie-search" aria-label="movie-search" placeholder="Ketik nama film-nya disini ...">
+            <input type="submit" value="Gas Cari" id="movie-search-button" class="cursor-pointer block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none" aria-label="button-search"></input>
+          </form>
 
 
-          </div>
+          <!-- Movie Trending -->
+          <div id="trending-movies-container" class="flex flex-col items-center">
+
+            <!-- Movie Trending Title -->
+            <div class="mt-16">
+              <h1 class="text-4xl font-semibold tracking-wide">Top Trending Movies in this week</h1>
+            </div>
+
+            <!-- Movie List Trending Item -->
+            <div id="trending-movies" class="grid grid-flow-row grid-rows-1 lg:grid-cols-4 gap-10 w-2/3 h-full mt-10">
+              <!-- trending movies show here -->
+            </div>
+
+           </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,27 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./sidebar.css";
+
+@import "./font.css";
+
+body {
+    font-family: 'Nunito', sans-serif;;
+}
+
+span#moovvie-hide {
+    visibility: hidden;
+    display: none;
+    transition: all 3s;
+}
+
+h2#nav-header-title {
+    transition: all 3s;
+}
+
+h2#nav-header-title:hover span#moovvie-hide{
+    visibility: visible;
+    display: contents;
+}
+

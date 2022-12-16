@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import './sidebar.css';
-@import './backToTop.css';
+@import './backToSearch.css';
 @import './loader.css';
 
 @import './font.css';

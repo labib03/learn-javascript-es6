@@ -4,7 +4,7 @@ import trendingMoviesElement from './trendingMovies'
 import searchElement from './searchElement'
 import { fetchGenresList } from './fetch'
 
-const backToTopButton = document.querySelector('#back-to-top-button')
+const backToSearchButton = document.querySelector('#back-to-search-button')
 
 const main = (props) => {
     const { genres } = props
@@ -17,16 +17,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { genres } = await fetchGenresList()
 
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.remove('hidden')
+        if (window.pageYOffset > 1000) {
+            backToSearchButton.classList.remove('hidden')
         } else {
-            backToTopButton.classList.add('hidden')
+            backToSearchButton.classList.add('hidden')
         }
     })
 
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
+    backToSearchButton.addEventListener('click', () => {
+        // window.scrollTo({
+        //     top: 0,
+        //     behavior: 'smooth',
+        // })
+        document.getElementById('movie-list').scrollIntoView({
             behavior: 'smooth',
         })
     })

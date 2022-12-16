@@ -5,6 +5,7 @@ import searchElement from './searchElement'
 import { fetchGenresList } from './fetch'
 
 const backToSearchButton = document.querySelector('#back-to-search-button')
+const goToMovieListButton = document.querySelector('.cta-landing-page')
 
 const main = (props) => {
     const { genres } = props
@@ -29,6 +30,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         //     top: 0,
         //     behavior: 'smooth',
         // })
+        document.getElementById('movie-list').scrollIntoView({
+            behavior: 'smooth',
+        })
+    })
+
+    goToMovieListButton.addEventListener('click', () => {
         document.getElementById('movie-list').scrollIntoView({
             behavior: 'smooth',
         })

@@ -1,0 +1,61 @@
+:root{
+    --primary: #fbcfe8;
+    --secondary: #f5d0fe;
+}
+
+.cta-landing-page {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+   }
+
+   .cta-landing-page:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: var(--secondary);
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+   }
+
+   .cta-landing-page span {
+    position: relative;
+    /* font-family: "Ubuntu", sans-serif; */
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+   }
+
+   .cta-landing-page svg {
+    position: relative;
+    top: -18px;
+    right: -120px;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #234567;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+   }
+
+   .cta-landing-page:hover:before {
+    width: 11rem;
+    background: var(--primary);
+   }
+
+   .cta-landing-page:hover svg {
+    transform: translateX(0);
+   }
+
+   .cta-landing-page:active {
+    transform: scale(0.95);
+   }

@@ -29,7 +29,7 @@ const createResultMoviesComponent = (movies, genres) => {
                 `<div class="w-full group py-3 px-5 h-[20rem] backdrop-blur-md bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 cursor-pointer transition duration-300 hover:scale-105">`
             )
             const image = $(`<div class="overflow-hidden h-full w-1/5">
-        <img class="w-max object-contain group-hover:scale-105 transition duration-700 bg-center rounded-xl h-full" src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
+        <img class="w-max object-contain scale-110 group-hover:scale-100 transition duration-700 bg-center rounded-xl h-full" src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
         </div>`)
 
             // description container

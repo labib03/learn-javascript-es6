@@ -1,44 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mooviee</title>
-</head>
-<body>
-
-    <!-- This example requires Tailwind CSS v3.0+ -->
-<div class="isolate bg-white h-screen">
-    <div class="fixed inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
-      <svg class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-        <defs>
-          <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#9089FC"></stop>
-            <stop offset="1" stop-color="#FF80B5"></stop>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <div class="px-6 pt-6 lg:px-8">
-      <div>
-        <nav class="flex h-9 items-center justify-between" aria-label="Global">
-          <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-            <div class="-m-1.5 p-1.5 group cursor-pointer">
-              <h2 class="relative text-2xl font-bold w-[1.3rem] overflow-hidden group-hover:w-full transition-all duration-200">Mooviee<span class="absolute group-hover:hidden top-1 text-3xl text-pink-500 transition-all duration-50">.</span></h2>
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mooviee</title>
+    </head>
+    <body>
+        <!-- This example requires Tailwind CSS v3.0+ -->
+        <div class="isolate bg-white h-screen">
+            <div
+                class="fixed inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+            >
+                <svg
+                    class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
+                    viewBox="0 0 1155 678"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)"
+                        fill-opacity=".3"
+                        d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
+                    />
+                    <defs>
+                        <linearGradient
+                            id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
+                            x1="1155.49"
+                            x2="-78.208"
+                            y1=".177"
+                            y2="474.645"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#9089FC"></stop>
+                            <stop offset="1" stop-color="#FF80B5"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
-          </div>
-          <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end lg:gap-x-12">
-            <a href="#" class="font-semibold text-gray-900 hover:text-pink-500 transition duration-150">Home</a>
+            <div class="px-6 pt-6 lg:px-8">
+                <div>
+                    <nav
+                        class="flex h-9 items-center justify-between"
+                        aria-label="Global"
+                    >
+                        <div
+                            class="flex lg:min-w-0 lg:flex-1"
+                            aria-label="Global"
+                        >
+                            <div class="-m-1.5 p-1.5 group cursor-pointer">
+                                <h2
+                                    class="relative text-2xl font-bold w-[1.3rem] overflow-hidden group-hover:w-full transition-all duration-200"
+                                >
+                                    Mooviee<span
+                                        class="absolute group-hover:hidden top-1 text-3xl text-pink-500 transition-all duration-50"
+                                        >.</span
+                                    >
+                                </h2>
+                            </div>
+                        </div>
+                        <div
+                            class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end lg:gap-x-12"
+                        >
+                            <a
+                                href="#"
+                                class="font-semibold text-gray-900 hover:text-pink-500 transition duration-150"
+                                >Home</a
+                            >
 
-            <a id="new-page" href="#movie-list" class="font-semibold text-gray-900 hover:text-pink-500 transition duration-150">Movie List</a>
-
-          </div>
-        </nav>
-        <!-- Mobile menu, show/hide based on menu open state. -->
-        <!-- <div role="dialog" aria-modal="true">
+                            <a
+                                id="new-page"
+                                href="#movie-list"
+                                class="font-semibold text-gray-900 hover:text-pink-500 transition duration-150"
+                                >Movie List</a
+                            >
+                        </div>
+                    </nav>
+                    <!-- Mobile menu, show/hide based on menu open state. -->
+                    <!-- <div role="dialog" aria-modal="true">
           <div focus="true" class="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
             <div class="flex h-9 items-center justify-between">
               <div class="flex">
@@ -50,8 +89,8 @@
               <div class="flex">
                 <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                   <span class="sr-only">Close menu</span> -->
-                  <!-- Heroicon name: outline/x-mark -->
-                  <!-- <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> -->
+                    <!-- Heroicon name: outline/x-mark -->
+                    <!-- <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> -->
                     <!-- <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -75,95 +114,164 @@
             </div>
           </div>
         </div> -->
-      </div>
-    </div>
-    <main>
-      <div class="relative px-6 lg:px-8">
-        <div class="mx-auto max-w-4xl pt-20 pb-32 sm:pt-48 sm:pb-40">
-          <div>
-            <!-- <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+                </div>
+            </div>
+            <main>
+                <div class="relative px-6 lg:px-8">
+                    <div
+                        class="mx-auto max-w-4xl pt-20 pb-32 sm:pt-48 sm:pb-40"
+                    >
+                        <div>
+                            <!-- <div class="hidden sm:mb-8 sm:flex sm:justify-center">
               <div class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                 <span class="text-gray-600">
                   Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
                 </span>
               </div>
             </div> -->
-            <div>
-              <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl"><span class="text-pink-400">Mooviee.</span> a simple movie store </h1>
-              <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Tempat untuk mencari ribuan judul film.</p>
-              <div class="mt-8 flex gap-x-4 sm:justify-center">
-                <!-- <a href="#" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
+                            <div>
+                                <h1
+                                    class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl"
+                                >
+                                    <span class="text-pink-400">Mooviee.</span>
+                                    a simple movie store
+                                </h1>
+                                <p
+                                    class="mt-6 text-lg leading-8 text-gray-600 sm:text-center"
+                                >
+                                    Tempat untuk mencari ribuan judul film.
+                                </p>
+                                <div
+                                    class="mt-8 flex gap-x-4 sm:justify-center"
+                                >
+                                    <!-- <a href="#" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
                   Get started
                   <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
                 </a> -->
-                <a href="#movie-list" class="group inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-slate-400 hover:ring-pink-400">
-                  Kuy cari film
-                  <span class="text-gray-400 group-hover:text-pink-400" aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
+                                    <a
+                                        href="#movie-list"
+                                        class="group inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-slate-400 hover:ring-pink-400"
+                                    >
+                                        Kuy cari film
+                                        <span
+                                            class="text-gray-400 group-hover:text-pink-400"
+                                            aria-hidden="true"
+                                            >&rarr;</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                            <div
+                                class="fixed inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                            >
+                                <svg
+                                    class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
+                                    viewBox="0 0 1155 678"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)"
+                                        fill-opacity=".3"
+                                        d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
+                                    />
+                                    <defs>
+                                        <linearGradient
+                                            id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc"
+                                            x1="1155.49"
+                                            x2="-78.208"
+                                            y1=".177"
+                                            y2="474.645"
+                                            gradientUnits="userSpaceOnUse"
+                                        >
+                                            <stop stop-color="#9089FC"></stop>
+                                            <stop
+                                                offset="1"
+                                                stop-color="#FF80B5"
+                                            ></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- movie list component -->
+            <div id="movie-list" class="h-screen -scroll-mt-8">
+                <div class="relative">
+                    <div
+                        class="mx-auto container h-full flex flex-col items-center py-40"
+                    >
+                        <!-- movie search input-->
+                        <form
+                            id="movie-search-form"
+                            class="w-2/4 flex items-center gap-2 relative group"
+                        >
+                            <input
+                                id="movie-search-input"
+                                autocomplete="off"
+                                class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider"
+                                type="text"
+                                name="movie-search"
+                                aria-label="movie-search"
+                                placeholder="Ketik nama film-nya disini ..."
+                            />
+
+                            <input
+                                type="submit"
+                                value="Gas Cari"
+                                id="movie-search-button"
+                                class="cursor-pointer block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none"
+                                aria-label="button-search"
+                            />
+                        </form>
+
+                        <!-- Movie Trending -->
+                        <div
+                            id="trending-movies-container"
+                            class="flex flex-col items-center"
+                        >
+                            <!-- Movie Trending Title -->
+                            <div class="mt-16">
+                                <h1
+                                    class="text-4xl font-semibold tracking-wide"
+                                >
+                                    Top Trending Movies in this week
+                                </h1>
+                            </div>
+
+                            <!-- Movie List Trending Item -->
+                            <div
+                                id="trending-movies"
+                                class="grid grid-flow-row grid-rows-1 lg:grid-cols-4 gap-10 w-2/3 h-full mt-10"
+                            >
+                                <!-- trending movies show here -->
+                            </div>
+                        </div>
+
+                        <!-- Movie Search Result -->
+                        <div
+                            id="search-movies-container"
+                            class="w-2/3 flex flex-col items-center gap-5"
+                        ></div>
+                    </div>
+                </div>
             </div>
-            <div class="fixed inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-              <svg class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-                <defs>
-                  <linearGradient id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#9089FC"></stop>
-                    <stop offset="1" stop-color="#FF80B5"></stop>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
         </div>
-      </div>
-    </main>
 
-    <!-- movie list component -->
-    <div id="movie-list" class="h-screen -scroll-mt-8">
-      <div class="relative">
-        <div class="mx-auto container h-full flex flex-col items-center py-40">
-          <!-- movie search input-->
-          <form id="movie-search-form" class="w-2/4 flex items-center gap-2" >
-            <input id="movie-search-input" autocomplete="off" class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider" type="text" name="movie-search" aria-label="movie-search" placeholder="Ketik nama film-nya disini ...">
-            <input type="submit" value="Gas Cari" id="movie-search-button" class="cursor-pointer block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none" aria-label="button-search"></input>
-          </form>
+        <!-- back to top component -->
+        <button id="back-to-top-button" class="hidden fixed bott">
+            <svg viewBox="0 0 20 20">
+                <path
+                    d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                ></path>
+            </svg>
+        </button>
 
-
-          <!-- Movie Trending -->
-          <div id="trending-movies-container" class="flex flex-col items-center">
-
-            <!-- Movie Trending Title -->
-            <div class="mt-16">
-               <h1 class="text-4xl font-semibold tracking-wide">Top Trending Movies in this week</h1>
-            </div>
-
-            <!-- Movie List Trending Item -->
-            <div id="trending-movies" class="grid grid-flow-row grid-rows-1 lg:grid-cols-4 gap-10 w-2/3 h-full mt-10">
-              <!-- trending movies show here -->
-            </div>
-
-           </div>
-
-           <!-- Movie Search Result -->
-           <div id="search-movies-container" class="w-2/3 flex flex-col items-center gap-5">
-
-           </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- back to top component -->
-  <button id="back-to-top-button" class="hidden fixed bott">
-    <svg viewBox="0 0 20 20">
-      <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"></path>
-    </svg>
-  </button>
-
-
-<!-- sidebar component on mobile & tablet device -->
-<!-- <div class="w-64 h-screen bg-gray-50 fixed top-0" aria-label="Sidebar">
+        <!-- sidebar component on mobile & tablet device -->
+        <!-- <div class="w-64 h-screen bg-gray-50 fixed top-0" aria-label="Sidebar">
     <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
        <ul class="space-y-2">
           <li>
@@ -213,8 +321,5 @@
        </ul>
     </div>
  </div> -->
-
-
-
-</body>
+    </body>
 </html>

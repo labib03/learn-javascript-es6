@@ -22,11 +22,11 @@ const createDivElement = (data) => {
 
         // movie information
         const containerInfo = $('<div>').addClass(
-            'absolute z-40 opacity-0 w-full h-1/2 px-2 flex items-center justify-center flex-col transition duration-300 translate-y-full group-hover:opacity-100 group-hover:translate-y-20'
+            'absolute z-40 opacity-0 w-full h-1/2 px-2 mb-2 flex items-center justify-center flex-col transition duration-300 translate-y-full group-hover:opacity-100 group-hover:translate-y-20'
         )
 
         const title = $('<h3>')
-            .addClass('text-2xl font-bold text-center text-[#fff]')
+            .addClass('text-xl font-bold text-center text-[#fff]')
             .text(movie?.title)
 
         const releaseDate = $('<h3>')

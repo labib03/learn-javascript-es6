@@ -1,14 +1,14 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "./sidebar.css";
-@import "./backToTop.css";
+@import './sidebar.css';
+@import './backToTop.css';
 
-@import "./font.css";
+@import './font.css';
 
 body {
-    font-family: 'Nunito', sans-serif;;
+    font-family: 'Nunito', sans-serif;
 }
 
 span#moovvie-hide {
@@ -21,8 +21,7 @@ h2#nav-header-title {
     transition: all 3s;
 }
 
-h2#nav-header-title:hover span#moovvie-hide{
+h2#nav-header-title:hover span#moovvie-hide {
     visibility: visible;
     display: contents;
 }
-

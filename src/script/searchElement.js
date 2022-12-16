@@ -9,32 +9,32 @@ const searchMoviesContainer = $('#search-movies-container')
 
 const searchResultElement = (movies, genres) => {
     searchMoviesContainer.empty()
-    const titleContainer = $('<div>').addClass('mt-16')
-    const title = $('<h1>')
-        .addClass('text-xl font-semibold tracking-wide')
-        .text(`Hasil pencarian untuk : ${searchInput.val()}`)
+    if (movies.length > 1) {
+        const titleContainer = $('<div>').addClass('mt-16')
+        const title = $('<h1>')
+            .addClass('text-xl font-semibold tracking-wide')
+            .text(`Hasil pencarian untuk : ${searchInput.val()}`)
 
-    // kerangka card untuk hasil pencarian
-    const cardResultElement = movies.map((item, index) => {
-        const date = new Date(item?.release_date)
-        const month = convertMonth(date.getUTCMonth())
-        const year = date.getFullYear()
-        const day = date.getDate()
+        // kerangka card untuk hasil pencarian
+        const cardResultElement = movies.map((item, index) => {
+            const date = new Date(item?.release_date)
+            const month = convertMonth(date.getUTCMonth())
+            const year = date.getFullYear()
+            const day = date.getDate()
 
-        const stringGenres = convertGenre(genres, item?.genre_ids)
+            const stringGenres = convertGenre(genres, item?.genre_ids)
 
-        const container = $(
-            `<div class="w-full group p-3 h-[20rem] backdrop-blur-md bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 text-2xl cursor-pointer transition duration-300 hover:scale-105">`
-        )
-
-        const image =
-            $(`<div class="overflow-hidden h-full w-max rounded-xl shadow-xl">
+            const container = $(
+                `<div class="w-full group p-3 h-[20rem] backdrop-blur-md bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 text-2xl cursor-pointer transition duration-300 hover:scale-105">`
+            )
+            const image =
+                $(`<div class="overflow-hidden h-full w-max rounded-xl shadow-xl">
         <img class="bg-cover group-hover:scale-105 transition duration-700 bg-center rounded-xl h-full" src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
         </div>`)
 
-        // description container
-        const descriptionContainer = $(
-            `<div class="p-3 flex flex-col h-full w-3/4 rounded-xl">
+            // description container
+            const descriptionContainer = $(
+                `<div class="p-3 flex flex-col h-full w-3/4 rounded-xl overflow-hidden">
                 <h1 class="text-3xl font-bold tracking-wide">${item?.title}</h1>
 
                 <div class="flex flex-col gap-1">
@@ -47,18 +47,18 @@ const searchResultElement = (movies, genres) => {
 
                <div class="mt-5 w-auto h-full">
                 <p class="text-base">Overview :</p>
-                <p class="text-base whitespace-normal truncate h-full">${
+                <p class="text-base line-clamp-4 text-justify leading-relaxed tracking-wide">${
                     item?.overview
                 }</p>
                </div>
 
             </div>`
-        )
+            )
 
-        // container append
-        // container.append(image, descriptionContainer)
+            // container append
+            // container.append(image, descriptionContainer)
 
-        const loader = $(`
+            const loader = $(`
         <div class="flex items-center justify-center w-full h-full">
 	<div class="flex justify-center items-center space-x-1 text-sm text-gray-700">
 
@@ -73,19 +73,30 @@ const searchResultElement = (movies, genres) => {
 	</div>
 </div>`)
 
-        container.append(loader)
+            container.append(loader)
 
-        setTimeout(() => {
-            container.empty()
-            container.append(image, descriptionContainer)
+            setTimeout(() => {
+                container.empty()
+                container.append(image, descriptionContainer)
+                return container
+            }, 1500)
+
             return container
-        }, 1500)
+        })
 
-        return container
-    })
+        titleContainer.append(title)
+        searchMoviesContainer.append(titleContainer, cardResultElement)
+    } else {
+        const titleContainer = $('<div>').addClass('mt-16')
+        const title = $('<h1>')
+            .addClass('text-xl font-semibold tracking-wide')
+            .text(`Hasil pencarian untuk : ${searchInput.val()}`)
 
-    titleContainer.append(title)
-    searchMoviesContainer.append(titleContainer, cardResultElement)
+        titleContainer.append(title)
+
+        const emptyResult = $(`<h1>Hasil tidak ditemukan</h1>`)
+        searchMoviesContainer.append(titleContainer, emptyResult)
+    }
 }
 
 searchInput.on('input', (e) => {
@@ -101,8 +112,8 @@ const searchElement = (props) => {
     const { genres } = props
 
     searchForm.on('submit', async (e) => {
+        e.preventDefault()
         if (searchInput.val().length > 0) {
-            e.preventDefault()
             searchInput.blur()
             const value = searchInput.val()
             const { results } = await fetchData(path, { query: value })

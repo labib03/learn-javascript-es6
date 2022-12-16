@@ -7,8 +7,9 @@ const searchForm = $('#movie-search-form')
 const path = '/search/movie'
 const searchMoviesContainer = $('#search-movies-container')
 
-const searchResultElement = (movies, genres) => {
-    searchMoviesContainer.empty()
+let isSearching = false
+
+const createResultMoviesComponent = (movies, genres) => {
     if (movies.length > 1) {
         const titleContainer = $('<div>').addClass('mt-16')
         const title = $('<h1>')
@@ -55,30 +56,13 @@ const searchResultElement = (movies, genres) => {
             )
 
             // container append
-            // container.append(image, descriptionContainer)
+            container.append(image, descriptionContainer)
 
-            const loader = $(`
-        <div class="flex items-center justify-center w-full h-full">
-	<div class="flex justify-center items-center space-x-1 text-sm text-gray-700">
-
-				<svg fill='none' class="w-6 h-6 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
-					<path clip-rule='evenodd'
-						d='M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z'
-						fill='currentColor' fill-rule='evenodd' />
-				</svg>
-
-
-		<div>Loading ...</div>
-	</div>
-</div>`)
-
-            container.append(loader)
-
-            setTimeout(() => {
-                container.empty()
-                container.append(image, descriptionContainer)
-                return container
-            }, 1500)
+            // const timer = setTimeout(() => {
+            //     container.empty()
+            //     container.append(image, descriptionContainer)
+            //     return clearTimeout(timer)
+            // }, 1500)
 
             return container
         })
@@ -98,6 +82,25 @@ const searchResultElement = (movies, genres) => {
     }
 }
 
+const createLoaderComponent = () => {
+    searchMoviesContainer.empty()
+    const LoaderComponent = $(`<div class="mt-24">
+
+    <div class="leap-frog">
+    <div class="leap-frog__dot"></div>
+    <div class="leap-frog__dot"></div>
+    <div class="leap-frog__dot"></div>
+    </div>
+    </div>`)
+
+    return searchMoviesContainer.append(LoaderComponent)
+}
+
+const searchResultElement = (movies, genres) => {
+    searchMoviesContainer.empty()
+    createResultMoviesComponent(movies, genres)
+}
+
 searchInput.on('input', (e) => {
     if (e.target.value.length > 0) {
         $('#trending-movies-container').addClass('hidden')
@@ -115,9 +118,15 @@ const searchElement = (props) => {
         if (searchInput.val().length > 0) {
             searchInput.blur()
             const value = searchInput.val()
+            createLoaderComponent()
             const { results } = await fetchData(path, { query: value })
 
-            searchResultElement(results, genres)
+            if (results) {
+                const timer = setTimeout(() => {
+                    searchResultElement(results, genres)
+                    return clearTimeout(timer)
+                }, 1000)
+            }
         }
 
         return

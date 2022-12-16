@@ -25,16 +25,15 @@ const searchResultElement = (movies, genres) => {
             const stringGenres = convertGenre(genres, item?.genre_ids)
 
             const container = $(
-                `<div class="w-full group p-3 h-[20rem] backdrop-blur-md bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 text-2xl cursor-pointer transition duration-300 hover:scale-105">`
+                `<div class="w-full group py-3 px-5 h-[20rem] backdrop-blur-md bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 cursor-pointer transition duration-300 hover:scale-105">`
             )
-            const image =
-                $(`<div class="overflow-hidden h-full w-max rounded-xl shadow-xl">
-        <img class="bg-cover group-hover:scale-105 transition duration-700 bg-center rounded-xl h-full" src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
+            const image = $(`<div class="overflow-hidden h-full w-1/5">
+        <img class="w-max object-contain group-hover:scale-105 transition duration-700 bg-center rounded-xl h-full" src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
         </div>`)
 
             // description container
             const descriptionContainer = $(
-                `<div class="p-3 flex flex-col h-full w-3/4 rounded-xl overflow-hidden">
+                `<div class="p-3 flex flex-col h-full w-4/5 rounded-xl overflow-hidden">
                 <h1 class="text-3xl font-bold tracking-wide">${item?.title}</h1>
 
                 <div class="flex flex-col gap-1">

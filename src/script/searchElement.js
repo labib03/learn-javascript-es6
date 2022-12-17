@@ -1,6 +1,7 @@
 import { fetchData } from './fetch'
 import { RESULT_IMAGE_URL } from './../config/common'
 import { convertGenre, convertMonth } from './../config/utils'
+import { lazyImage } from './lazyLoadImage'
 
 const searchInput = $('#movie-search-input')
 const searchForm = $('#movie-search-form')
@@ -22,8 +23,9 @@ const createCardResultElement = (movies, genres) => {
         const container = $(
             `<div class="w-full py-3 px-5 h-[20rem] bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 cursor-pointer transition duration-300 hover:scale-105">`
         )
+
         const image = $(`<div class="overflow-hidden h-full w-1/5">
-    <img class="w-max object-contain transition duration-700 bg-center rounded-xl h-full" src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
+    <img class="lazy w-max object-contain transition duration-700 bg-center rounded-xl h-full" data-src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
     </div>`)
 
         // description container
@@ -49,12 +51,6 @@ const createCardResultElement = (movies, genres) => {
 
         // container append
         container.append(image, descriptionContainer)
-
-        // const timer = setTimeout(() => {
-        //     container.empty()
-        //     container.append(image, descriptionContainer)
-        //     return clearTimeout(timer)
-        // }, 1500)
 
         return container
     })
@@ -103,6 +99,8 @@ const createLoaderComponent = () => {
 const searchResultElement = (movies, genres) => {
     searchMoviesContainer.empty()
     createResultMoviesComponent(movies, genres)
+
+    lazyImage()
 }
 
 searchInput.on('input', (e) => {
@@ -128,6 +126,7 @@ const searchElement = (props) => {
             if (results) {
                 const timer = setTimeout(() => {
                     searchResultElement(results, genres)
+
                     return clearTimeout(timer)
                 }, 1000)
             }

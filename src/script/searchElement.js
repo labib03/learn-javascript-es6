@@ -20,13 +20,20 @@ const createCardResultElement = (movies, genres) => {
 
         const stringGenres = convertGenre(genres, item?.genre_ids)
 
-        const container = $(
+        const imagePath = `${RESULT_IMAGE_URL}/${item?.poster_path}`
+
+        const wrapper = $(
             `<div class="w-full py-3 px-5 h-[20rem] bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 cursor-pointer transition duration-300 hover:scale-105">`
         )
 
-        const image = $(`<div class="overflow-hidden h-full w-1/5">
-    <img class="lazy w-max object-contain transition duration-700 bg-center rounded-xl h-full" data-src="${RESULT_IMAGE_URL}/${item?.poster_path}" alt="${item?.title}"/>
-    </div>`)
+        const imageContainer = $(
+            `<div class="overflow-hidden relative h-full w-1/5 bg-transparent">`
+        )
+
+        const image =
+            $(`    <img class="lazy w-max object-contain transition duration-700 bg-center rounded-xl h-full" data-src="${imagePath}" alt="${item?.title}"/>
+    `)
+        imageContainer.append(image)
 
         // description container
         const descriptionContainer = $(
@@ -50,9 +57,9 @@ const createCardResultElement = (movies, genres) => {
         )
 
         // container append
-        container.append(image, descriptionContainer)
+        wrapper.append(imageContainer, descriptionContainer)
 
-        return container
+        return wrapper
     })
 
     return cardResultElement

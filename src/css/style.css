@@ -2,10 +2,13 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
+
 @import './sidebar.css';
 @import './backToSearch.css';
 @import './loader.css';
 @import './cta-landing-page.css';
+@import './pagination.css';
 
 @import './font.css';
 

@@ -3,6 +3,7 @@ import 'flowbite'
 import trendingMoviesElement from './trendingMovies'
 import searchElement from './searchElement'
 import { fetchGenresList } from './fetch'
+import Pagination from './Pagination'
 
 const backToSearchButton = document.querySelector('#back-to-search-button')
 const goToMovieListButton = document.querySelector('.cta-landing-page')
@@ -12,10 +13,12 @@ const main = (props) => {
 
     trendingMoviesElement()
     searchElement({ genres })
+    Pagination()
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
     const { genres } = await fetchGenresList()
+    $('.pagination').addClass('hidden')
 
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 1000) {

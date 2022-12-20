@@ -10,9 +10,27 @@ const searchMoviesContainer = $('#search-movies-container')
 
 let isSearching = false
 
+const createTitleResultElement = (movies) => {
+    const { page, total_pages, total_results } = movies
+    const titleContainer = $(
+        '<div class="flex w-full justify-between items-center">'
+    ).addClass('mt-16')
+    const title = $('<h1>')
+        .addClass('text-xl font-semibold tracking-wide')
+        .text(`Hasil pencarian untuk : ${searchInput.val()}`)
+
+    const counter = $(`<h1>
+    Halaman ke-${page} dari ${total_pages} halaman
+    </h1>`)
+
+    titleContainer.append(title, counter)
+
+    return titleContainer
+}
+
 const createCardResultElement = (movies, genres) => {
     // kerangka card untuk hasil pencarian
-    const cardResultElement = movies.map((item, index) => {
+    const cardResultElement = movies?.map((item, index) => {
         const date = new Date(item?.release_date)
         const month = convertMonth(date.getUTCMonth())
         const year = date.getFullYear()
@@ -66,26 +84,14 @@ const createCardResultElement = (movies, genres) => {
 }
 
 const createResultMoviesComponent = (movies, genres) => {
-    if (movies.length > 1) {
-        const titleContainer = $('<div>').addClass('mt-16')
-        const title = $('<h1>')
-            .addClass('text-xl font-semibold tracking-wide')
-            .text(`Hasil pencarian untuk : ${searchInput.val()}`)
+    const titleResult = createTitleResultElement(movies)
+    if (movies?.results?.length > 1) {
+        const cardResult = createCardResultElement(movies?.results, genres)
 
-        const cardResult = createCardResultElement(movies, genres)
-
-        titleContainer.append(title)
-        searchMoviesContainer.append(titleContainer, cardResult)
+        searchMoviesContainer.append(titleResult, cardResult)
     } else {
-        const titleContainer = $('<div>').addClass('mt-16')
-        const title = $('<h1>')
-            .addClass('text-xl font-semibold tracking-wide')
-            .text(`Hasil pencarian untuk : ${searchInput.val()}`)
-
-        titleContainer.append(title)
-
         const emptyResult = $(`<h1>Hasil tidak ditemukan</h1>`)
-        searchMoviesContainer.append(titleContainer, emptyResult)
+        searchMoviesContainer.append(titleResult, emptyResult)
     }
 }
 
@@ -128,11 +134,13 @@ const searchElement = (props) => {
             searchInput.blur()
             const value = searchInput.val()
             createLoaderComponent()
-            const { results } = await fetchData(path, { query: value })
+            const response = await fetchData(path, { query: value })
+            const { results } = response
 
-            if (results) {
+            if (response?.results) {
                 const timer = setTimeout(() => {
-                    searchResultElement(results, genres)
+                    searchResultElement(response, genres)
+                    $('.pagination').removeClass('hidden')
 
                     return clearTimeout(timer)
                 }, 1000)

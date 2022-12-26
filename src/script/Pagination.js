@@ -1,124 +1,142 @@
-const Pagination = () => {
-    function getPageList(totalPages, page, maxLength) {
-        function range(start, end) {
-            return Array.from(Array(end - start + 1), (_, i) => i + start)
-        }
+import { fetchGenresList, fetchSearchMovie } from './fetch'
+import searchElementHandler from './searchElement/searchElementHandler'
 
-        let sideWidth = maxLength < 9 ? 1 : 2
-        let leftWidth = (maxLength - sideWidth * 2 - 3) >> 1
-        let rightWidth = (maxLength - sideWidth * 2 - 3) >> 1
+let currentPage = 1
+let paginationSize = 7
 
-        if (totalPages <= maxLength) {
-            return range(1, totalPages)
-        }
+function getPageList(totalPages, page, maxLength) {
+    function range(start, end) {
+        return Array.from(Array(end - start + 1), (_, i) => i + start)
+    }
 
-        if (page <= maxLength - sideWidth - 1 - rightWidth) {
-            return range(1, maxLength - sideWidth - 1).concat(
-                0,
-                range(totalPages - sideWidth + 1, totalPages)
-            )
-        }
+    let sideWidth = maxLength < 9 ? 1 : 2
+    let leftWidth = (maxLength - sideWidth * 2 - 3) >> 1
+    let rightWidth = (maxLength - sideWidth * 2 - 3) >> 1
 
-        if (page >= totalPages - sideWidth - 1 - rightWidth) {
-            return range(1, sideWidth).concat(
-                0,
-                range(
-                    totalPages - sideWidth - 1 - rightWidth - leftWidth,
-                    totalPages
-                )
-            )
-        }
+    if (totalPages <= maxLength) {
+        return range(1, totalPages)
+    }
 
-        return range(1, sideWidth).concat(
-            0,
-            range(page - leftWidth, page + rightWidth),
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+        return range(1, maxLength - sideWidth - 1).concat(
             0,
             range(totalPages - sideWidth + 1, totalPages)
         )
     }
 
-    $(function () {
-        let numberOfItems = $('.card-content .card').length || 30
-        let limitPerPage = 3 // how many card items visible per a page
-        let totalPages = Math.ceil(numberOfItems / limitPerPage)
-        let paginationSize = 7 // how many page visible in the pagination
-        let currentPage
-
-        function showPage(whichPage) {
-            if (whichPage < 1 || whichPage > totalPages) return false
-
-            currentPage = whichPage
-
-            $('.card-content .card')
-                .hide()
-                .slice(
-                    (currentPage - 1) * limitPerPage,
-                    currentPage * limitPerPage
-                )
-                .show()
-
-            $('.pagination li').slice(1, -1).remove()
-
-            getPageList(totalPages, currentPage, paginationSize).forEach(
-                (item) => {
-                    $('<li>')
-                        .addClass('page-item')
-                        .addClass(item ? 'current-page' : 'dots')
-                        .toggleClass('active', item === currentPage)
-                        .append(
-                            $('<a>')
-                                .addClass('page-link')
-                                .attr({ href: 'javascript:void(0)' })
-                                .text(item || '...')
-                        )
-                        .insertBefore('.next-page')
-                }
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+        return range(1, sideWidth).concat(
+            0,
+            range(
+                totalPages - sideWidth - 1 - rightWidth - leftWidth,
+                totalPages
             )
-
-            $('.previous-page').toggleClass('disable', currentPage === 1)
-            $('.next-page').toggleClass('disable', currentPage === totalPages)
-            return true
-        }
-        $('.pagination').append(
-            $('<li>')
-                .addClass('page-item')
-                .addClass('previous-page')
-                .append(
-                    $('<a>')
-                        .addClass('page-link')
-                        .attr({ href: 'javascript:void(0)' })
-                        .text('Prev')
-                ),
-            $('<li>')
-                .addClass('page-item')
-                .addClass('next-page')
-                .append(
-                    $('<a>')
-                        .addClass('page-link')
-                        .attr({ href: 'javascript:void(0)' })
-                        .text('Next')
-                )
         )
+    }
 
-        $('.card-content').show()
-        showPage(1)
-
-        $(document).on(
-            'click',
-            '.pagination li.current-page:not(.active)',
-            function () {
-                return showPage(+$(this).text())
-            }
-        )
-
-        $('.next-page').on('click', function () {
-            return showPage(currentPage + 1)
-        })
-
-        $('.previous-page').on('click', function () {
-            return showPage(currentPage - 1)
-        })
-    })
+    return range(1, sideWidth).concat(
+        0,
+        range(page - leftWidth, page + rightWidth),
+        0,
+        range(totalPages - sideWidth + 1, totalPages)
+    )
 }
 
-export default Pagination
+// Function to fetch the data for a given page
+export default async function fetchPage({ page = 1 }) {
+    const { genres } = await fetchGenresList()
+    currentPage = page
+    // Make an API request to retrieve the data for the given page
+    try {
+        const value = $('#movie-search-input').val()
+        const response = await fetchSearchMovie({ page, value })
+        displayData({ response, genres })
+        updatePagination(page, response.total_pages, genres)
+    } catch (error) {
+        console.log('something error happens', error.message)
+    }
+
+    // fetch(apiUrl + '?page=' + page + '&per_page=' + itemsPerPage)
+    //     .then(function(response) {
+    //         return response.json();
+    //     })
+    //     .then(function(data) {
+    //         // Display the data for the current page
+    //         displayData(data);
+
+    //         // Update the pagination buttons
+    //         updatePagination(page, data.total_pages);
+    //     });
+}
+
+// Function to display the data for the current page
+function displayData({ response, genres }) {
+    const value = $('#movie-search-input').val()
+    // Clear the current data
+    searchElementHandler({ response, genres, value })
+}
+
+// Function to update the pagination buttons
+function updatePagination(page, totalPages, genres) {
+    // Clear the current pagination buttons
+    $('.pagination').empty()
+
+    // Generate the pagination buttons
+    // for (var i = 1; i <= totalPages; i++) {
+    //     $('.pagination').append('<a href="#" class="page-number">' + i + '</a>')
+    // }
+
+    const paginationComp = getPageList(
+        totalPages,
+        currentPage,
+        paginationSize
+    ).map((item) => {
+        return $('<li>')
+            .addClass('page-item hover:bg-pink-100 transition duration-200')
+            .addClass(item ? 'current-page' : 'dots')
+            .toggleClass('active', item === currentPage)
+            .append(
+                $('<a>')
+                    .addClass('page-link')
+                    // .attr({ href: 'javascript:void(0)' })
+                    .text(item || '...')
+            )
+            .insertBefore('.next-page')
+    })
+
+    const render = paginationComp.map((item) => {
+        return item?.prevObject
+    })
+
+    // $('.pagination').append(paginationComp)
+    $('.pagination').append(render)
+
+    $('.previous-page').toggleClass('disable', currentPage === 1)
+    $('.next-page').toggleClass('disable', currentPage === totalPages)
+
+    // Set the active class on the current button
+    // $('#pagination a.page-number:nth-child(' + page + ')').addClass('active')
+
+    // Handle clicks on the pagination buttons
+    $(`.pagination li.current-page`).on('click', function (e) {
+        e.preventDefault()
+
+        // Set the current page to the button's page number
+        currentPage = +$(this).children().text()
+        // Fetch the data for the current page
+        fetchPage({ page: currentPage })
+    })
+
+    //  $('.next-page').on('click', function () {
+    //         showPage(currentPage + 1)
+    //         return fetchSearchMovie(currentPage)
+    //     })
+
+    //     $('.previous-page').on('click', function () {
+    //         showPage(currentPage - 1)
+    //         return fetchSearchMovie(currentPage)
+    //     })
+}
+
+// Fetch the data for the first page
+// fetchPage(1)

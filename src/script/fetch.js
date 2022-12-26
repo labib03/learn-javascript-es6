@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { apiKey, BASE_URL } from './../config/common'
+import { apiKey, BASE_URL, pathMovies } from './../config/common'
 
 export async function fetchGenresList() {
     const response = await axios.get(`${BASE_URL}/genre/movie/list`, {
@@ -11,13 +11,20 @@ export async function fetchGenresList() {
     return response?.data
 }
 
-export async function fetchData(path, param = null) {
+export async function fetchData({ path, params = null }) {
     const response = await axios.get(`${BASE_URL}${path}`, {
         params: {
             api_key: apiKey,
+            ...params,
             // language: 'id-ID',
-            ...param,
         },
     })
     return response?.data
+}
+
+export async function fetchSearchMovie({ value, page }) {
+    return await fetchData({
+        path: pathMovies,
+        params: { query: value, page },
+    })
 }

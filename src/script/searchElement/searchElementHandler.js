@@ -1,23 +1,19 @@
-import { fetchData } from './fetch'
-import { RESULT_IMAGE_URL } from './../config/common'
-import { convertGenre, convertMonth } from './../config/utils'
-import { lazyImage } from './lazyLoadImage'
+import { fetchData } from '../fetch'
+import { RESULT_IMAGE_URL } from '../../config/common'
+import { convertGenre, convertMonth } from '../../config/utils'
+import { lazyImage } from '../lazyLoadImage'
 
 const searchInput = $('#movie-search-input')
-const searchForm = $('#movie-search-form')
-const path = '/search/movie'
 const searchMoviesContainer = $('#search-movies-container')
-
-let isSearching = false
 
 const createTitleResultElement = (movies) => {
     const { page, total_pages, total_results } = movies
     const titleContainer = $(
         '<div class="flex w-full justify-between items-center">'
     ).addClass('mt-16')
-    const title = $('<h1>')
-        .addClass('text-xl font-semibold tracking-wide')
-        .text(`Hasil pencarian untuk : ${searchInput.val()}`)
+    const title = $(
+        `<h1 class="text-xl font-semibold tracking-wide">Hasil pencarian untuk : <span class="underline underline-offset-4 decoration-pink-500 decoration-4">${searchInput.val()}</span></h1>`
+    )
 
     const counter = $(`<h1>
     Halaman ke-${page} dari ${total_pages} halaman
@@ -61,7 +57,6 @@ const createCardResultElement = (movies, genres) => {
             <div class="flex flex-col gap-1">
             <p class="text-sm">${year}</p>
             <p class="text-xs">${stringGenres.join(' / ')}</p>
-            <p class="text-xs">Adult film : ${item?.adult ? 'Yes' : 'No'}</p>
             </div>
 
            <div class="mt-5 w-auto h-full">
@@ -95,6 +90,11 @@ const createResultMoviesComponent = (movies, genres) => {
     }
 }
 
+const searchResultElement = (movies, genres) => {
+    searchMoviesContainer.empty()
+    createResultMoviesComponent(movies, genres)
+}
+
 const createLoaderComponent = () => {
     searchMoviesContainer.empty()
     const LoaderComponent = $(`<div class="mt-24">
@@ -109,46 +109,26 @@ const createLoaderComponent = () => {
     return searchMoviesContainer.append(LoaderComponent)
 }
 
-const searchResultElement = (movies, genres) => {
-    searchMoviesContainer.empty()
-    createResultMoviesComponent(movies, genres)
+const createComponent = ({ response, genres = null }) => {
+    createLoaderComponent()
 
-    lazyImage()
-}
-
-searchInput.on('input', (e) => {
-    if (e.target.value.length > 0) {
-        $('#trending-movies-container').addClass('hidden')
-        searchMoviesContainer.empty()
-    } else {
-        $('#trending-movies-container').removeClass('hidden')
+    if (response?.results) {
+        const timer = setTimeout(() => {
+            searchResultElement(response, genres)
+            $('.pagination').removeClass('hidden')
+            document.getElementById('movie-list').scrollIntoView({
+                behavior: 'smooth',
+            })
+            lazyImage()
+            return clearTimeout(timer)
+        }, 1000)
     }
-})
-
-const searchElement = (props) => {
-    const { genres } = props
-
-    searchForm.on('submit', async (e) => {
-        e.preventDefault()
-        if (searchInput.val().length > 0) {
-            searchInput.blur()
-            const value = searchInput.val()
-            createLoaderComponent()
-            const response = await fetchData(path, { query: value })
-            const { results } = response
-
-            if (response?.results) {
-                const timer = setTimeout(() => {
-                    searchResultElement(response, genres)
-                    $('.pagination').removeClass('hidden')
-
-                    return clearTimeout(timer)
-                }, 1000)
-            }
-        }
-
-        return
-    })
 }
 
-export default searchElement
+export default function searchElementHandler({ response, genres }) {
+    if (searchInput.val().length > 0) {
+        searchInput.blur()
+
+        createComponent({ response, genres })
+    }
+}

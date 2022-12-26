@@ -5,7 +5,7 @@ const path = '/trending/movie/week'
 const trendingMovie = $('#trending-movies')
 
 const getTrendingMovies = () => {
-    const response = fetchData(path)
+    const response = fetchData({ path })
     return response
 }
 

@@ -2,7 +2,7 @@ import { fetchGenresList, fetchSearchMovie } from './fetch'
 import searchElementHandler from './searchElement/searchElementHandler'
 
 let currentPage = 1
-let paginationSize = 7
+let paginationSize = 5
 
 function getPageList(totalPages, page, maxLength) {
     function range(start, end) {

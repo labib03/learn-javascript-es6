@@ -9,13 +9,14 @@ const searchMoviesContainer = $('#search-movies-container')
 const createTitleResultElement = (movies) => {
     const { page, total_pages, total_results } = movies
     const titleContainer = $(
-        '<div class="flex w-full justify-between items-center">'
-    ).addClass('mt-16')
-    const title = $(
-        `<h1 class="text-xl font-semibold tracking-wide">Hasil pencarian untuk : <span class="underline underline-offset-4 decoration-pink-500 decoration-4">${searchInput.val()}</span></h1>`
+        '<div class="flex sm:flex-row flex-col text-left w-full sm:justify-between sm:items-center mt-16">'
     )
 
-    const counter = $(`<h1>
+    const title = $(
+        `<h1 class="text-base mb-5 lg:text-xl sm:mb-0 font-semibold tracking-wide">Hasil pencarian untuk : <span class="underline underline-offset-4 decoration-pink-500 decoration-4">${searchInput.val()}</span></h1>`
+    )
+
+    const counter = $(`<h1 class="text-sm lg:text-xl">
     Halaman ke-${page} dari ${total_pages} halaman
     </h1>`)
 
@@ -37,21 +38,21 @@ const createCardResultElement = (movies, genres) => {
         const imagePath = `${RESULT_IMAGE_URL}/${item?.poster_path}`
 
         const wrapper = $(
-            `<div class="w-full py-3 px-5 h-[20rem] bg-gradient-to-r from-pink-50 rounded-xl flex gap-1 cursor-pointer transition duration-300 hover:scale-105">`
+            `<div class="w-full py-3 px-5 h-[20rem] bg-gradient-to-r from-pink-50 rounded-xl flex sm:flex-row flex-col gap-1 cursor-pointer transition duration-300 hover:scale-105">`
         )
 
         const imageContainer = $(
-            `<div class="overflow-hidden relative h-full w-1/5 bg-transparent">`
+            `<div class="overflow-hidden relative h-full w-full sm:w-1/5">`
         )
 
         const image =
-            $(`    <img class="lazy w-max object-contain transition duration-700 bg-center rounded-xl h-full" data-src="${imagePath}" alt="${item?.title}"/>
+            $(`    <img class="lazy sm:w-max w-full sm:object-contain object-cover transition duration-700 sm:bg-center rounded-xl h-full" data-src="${imagePath}" alt="${item?.title}"/>
     `)
         imageContainer.append(image)
 
         // description container
         const descriptionContainer = $(
-            `<div class="p-3 flex flex-col h-full w-4/5 rounded-xl overflow-hidden">
+            `<div class="hidden  p-3 sm:flex flex-col h-full w-4/5 rounded-xl overflow-hidden">
             <h1 class="text-3xl font-bold tracking-wide">${item?.title}</h1>
 
             <div class="flex flex-col gap-1">
@@ -61,7 +62,7 @@ const createCardResultElement = (movies, genres) => {
 
            <div class="mt-5 w-auto h-full">
             <p class="text-base">Overview :</p>
-            <p class="text-base line-clamp-4 text-justify leading-relaxed tracking-wide">${
+            <p class="text-sm lg:text-base line-clamp-4 text-justify leading-relaxed tracking-wide">${
                 item?.overview
             }</p>
            </div>

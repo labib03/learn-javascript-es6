@@ -1,14 +1,11 @@
-:root{
-
-}
-
-  .pagination {
+ .pagination {
     --pag-primary: #FFB9B9;
     --pag-secondary: #FAF8F1;
     --pag-disabled: #f5f5f4;
     text-align: center;
     margin: 30px 30px 60px;
     user-select: none;
+    width: 70%;
   }
 
   .pagination li {
@@ -22,7 +19,8 @@
     /* color: black; */
     text-decoration: none;
     font-size: 1.2em;
-    line-height: 45px;
+    /* font-size: 1rem; */
+    /* line-height: 45px; */
   }
 
   .previous-page, .next-page{
@@ -43,8 +41,8 @@
 
   .current-page, .dots{
     background-color: var(--pag-secondary);
-    width: 45px;
-    border-radius: 50%;
+    padding: 3px 10px;
+    /* border-radius: 50%; */
     cursor: pointer;
   }
 

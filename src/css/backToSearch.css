@@ -34,8 +34,10 @@
     height: 56px;
     overflow: hidden;
     border: none;
-    color: black;
-    background: none;
+    /* color: black;
+    background: none; */
+    background-color: rgba(26, 27, 28, 0.4);
+    color: azure;
 
     /* position: relative; */
     padding-bottom: 2em;

@@ -119,47 +119,32 @@
             <main>
                 <div class="relative px-6 lg:px-8">
                     <div
-                        class="mx-auto max-w-4xl pt-20 pb-32 sm:pt-48 sm:pb-40"
+                        class="w-full mx-auto flex items-center justify-start md:justify-center pt-20 pb-32 sm:pt-48 sm:pb-40"
                     >
                         <div>
 
                             <div>
                                 <h1
-                                    class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl"
+                                    class="text-4xl font-bold tracking-tight md:text-center sm:text-6xl"
                                 >
                                     <span class="text-pink-400">Mooviee.</span>
                                     a simple movie store
                                 </h1>
                                 <p
-                                    class="mt-6 text-lg leading-8 text-gray-600 sm:text-center"
+                                    class="mt-6 text-lg leading-8 md:text-center text-gray-600"
                                 >
                                     Tempat untuk mencari ribuan judul film.
                                 </p>
                                 <div
-                                    class="mt-8 flex gap-x-4 sm:justify-center"
+                                    class="mt-8 flex w-full"
                                 >
-                                    <!-- <a href="#" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
-                  Get started
-                  <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
-                </a> -->
-                                    <!-- <a
-                                        href="#movie-list"
-                                        class="group inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-slate-400 hover:ring-pink-400"
-                                    >
-                                        Kuy cari film
-                                        <span
-                                            class="text-gray-400 group-hover:text-pink-400"
-                                            aria-hidden="true"
-                                            >&rarr;</span
-                                        >
-                                    </a> -->
-                                    <button class="cta-landing-page block">
+                                    <button class="cta-landing-page md:m-auto">
                                         <span>Kuy cari film</span>
                                         <svg viewBox="0 0 13 10" height="10px" width="15px">
                                           <path d="M1,5 L11,5"></path>
                                           <polyline points="8 1 12 5 8 9"></polyline>
                                         </svg>
-                                      </button>
+                                    </button>
                                 </div>
                             </div>
                             <div
@@ -208,12 +193,12 @@
                         <!-- movie search input-->
                         <form
                             id="movie-search-form"
-                            class="w-2/4 flex items-center gap-2 relative group"
+                            class="md:w-2/4 w-4/5 flex flex-col md:flex-row items-center md:gap-2 gap-5 relative group"
                         >
                             <input
                                 id="movie-search-input"
                                 autocomplete="off"
-                                class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-150 focus:translate-y-5 focus:translate-x-[3.4rem] placeholder:tracking-wider"
+                                class="w-full flex-1 py-3 px-4 block rounded-md border-transparent transition duration-300 shadow-md shadow-white peer focus:ring-0 focus:border-transparent focus:shadow-[#FF8E9E]/30 focus:shadow-md focus:scale-100 md:focus:scale-150 md:focus:translate-y-5 focus:translate-y-0 md:focus:translate-x-[3.4rem] focus:translate-x-0 placeholder:tracking-wider"
                                 type="text"
                                 name="movie-search"
                                 aria-label="movie-search"
@@ -224,7 +209,7 @@
                                 type="submit"
                                 value="Gas Cari"
                                 id="movie-search-button"
-                                class="cursor-pointer block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none"
+                                class="cursor-pointer w-full sm:w-auto block py-2 px-4 rounded-md transition duration-200 shadow-md shadow-gray-100 hover:shadow-pink-100 hover:shadow-md active:shadow-none"
                                 aria-label="button-search"
                             />
                         </form>
@@ -232,12 +217,12 @@
                         <!-- Movie Trending -->
                         <div
                             id="trending-movies-container"
-                            class="flex flex-col items-center"
+                            class="mx-2 sm:mx-0 flex flex-col items-center"
                         >
                             <!-- Movie Trending Title -->
                             <div class="mt-16">
                                 <h1
-                                    class="text-4xl font-semibold tracking-wide"
+                                    class="text-2xl sm:text-4xl text-center font-semibold tracking-wide"
                                 >
                                     Top Trending Movies in this week
                                 </h1>

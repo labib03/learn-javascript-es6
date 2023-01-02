@@ -17,6 +17,7 @@ const main = (props) => {
 document.addEventListener('DOMContentLoaded', async () => {
     const { genres } = await fetchGenresList()
     $('.pagination').addClass('hidden')
+    backToSearchButton.classList.add('hidden')
 
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 1000) {

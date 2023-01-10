@@ -2,6 +2,7 @@ import { fetchData } from '../fetch'
 import { RESULT_IMAGE_URL } from '../../config/common'
 import { convertGenre, convertMonth } from '../../config/utils'
 import { lazyImage } from '../lazyLoadImage'
+import '../../component/loader.js'
 
 const searchInput = $('#movie-search-input')
 const searchMoviesContainer = $('#search-movies-container')
@@ -106,6 +107,8 @@ const createLoaderComponent = () => {
     <div class="leap-frog__dot"></div>
     </div>
     </div>`)
+    // const LoaderComponent = document.createElement('loader-app')
+    console.log(LoaderComponent)
 
     return searchMoviesContainer.append(LoaderComponent)
 }

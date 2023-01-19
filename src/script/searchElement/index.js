@@ -7,7 +7,7 @@ const searchMoviesContainer = $('#search-movies-container')
 const path = '/search/movie'
 
 const searchElement = (props) => {
-    const { genres } = props
+    // const { genres } = props
 
     searchInput.on('input', (e) => {
         if (e.target.value.length > 0) {
@@ -27,7 +27,7 @@ const searchElement = (props) => {
         // searchElementHandler({ response, genres, value })
         // $('.pagination').empty()
         // Pagination({ total_pages, path, value, genres })
-        fetchPage({ genres })
+        await fetchPage()
     })
 }
 

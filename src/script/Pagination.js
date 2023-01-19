@@ -43,7 +43,7 @@ function getPageList(totalPages, page, maxLength) {
 }
 
 // Function to fetch the data for a given page
-export default async function fetchPage({ page = 1 }) {
+export default async function fetchPage(page = 1) {
     const { genres } = await fetchGenresList()
     currentPage = page
     // Make an API request to retrieve the data for the given page
@@ -124,7 +124,7 @@ function updatePagination(page, totalPages, genres) {
         // Set the current page to the button's page number
         currentPage = +$(this).children().text()
         // Fetch the data for the current page
-        fetchPage({ page: currentPage })
+        fetchPage({page: currentPage})
     })
 
     //  $('.next-page').on('click', function () {
